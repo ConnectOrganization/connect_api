@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/ConnectApi/.vs/ConnectApi/v15
+/ConnectApi/ConnectApi.Tests/bin/Debug/netcoreapp2.0
+/ConnectApi/ConnectApi.Tests/obj
+/ConnectApi/TestResults/4dee00f8-c4e5-422a-8191-782b02791a1f
+/ConnectApi/ConnectApi/obj
+/ConnectApi/ConnectApi/bin/Debug/netcoreapp1.1
