@@ -66,6 +66,6 @@ namespace ConnectApi.Models
 
         public DateTime? BooksFrom { get; set; }
 
-        public virtual  AddressInfo Address { get; set; }
+        public virtual AddressInfo Address { get; set; }
     }
 }

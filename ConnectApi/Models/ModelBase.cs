@@ -9,7 +9,7 @@ namespace ConnectApi.Models
         [Key]
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
 
         [MaxLength(20)]
         public string ModifiedBy { get; set; }

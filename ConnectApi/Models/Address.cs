@@ -3,9 +3,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ConnectApi.Models
 {
-    [Table("Company")]
+    [Table("AddressInfo")]
     public class AddressInfo : ModelBase
     {
+        [Key, ForeignKey("Company")]
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public override int Id { get; set; }
+
         [Required]
         public string Address { get; set; }
 
@@ -20,5 +25,8 @@ namespace ConnectApi.Models
 
         [Required]
         public string Email { get; set; }
+
+        [Required]
+        public virtual Company Company { get; set; }
     }
 }
