@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ConnectApi.Services
 {
-    public class CompaniesService : ICompaniesService
+    public class CompanyService : ICompanyService
     {
         private readonly DbSet<Company> _repository;
 
-        public CompaniesService(ConnectDbContext connectDbContext)
+        public CompanyService(ConnectDbContext connectDbContext)
         {
             _repository = connectDbContext.Companies;
         }
