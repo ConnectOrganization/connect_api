@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using NLog.Extensions.Logging;
 using StructureMap;
@@ -40,7 +41,11 @@ namespace ConnectApi
             services.AddMvcCore()
                 .AddApiExplorer()
                 .AddDataAnnotations()
-                .AddJsonFormatters(json => { json.ContractResolver = new DefaultContractResolver(); });
+                .AddJsonFormatters(json =>
+                {
+                    json.ContractResolver = new DefaultContractResolver();
+                    json.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                });
 
             services.AddSwaggerGen(c => { c.SwaggerDoc("docs", new Info {Title = "Connect Api", Version = "v1"}); });
 
