@@ -1,29 +1,28 @@
 ﻿using System.Collections.Generic;
 using ConnectApi.Models;
+using ConnectApi.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConnectApi.Controllers
 {
     [Route("Companies")]
-    public class CompaniesController : ControllerBase
+    public class CompaniesController : AppControllerBase<ICompaniesService, Company>
     {
-        private readonly ConnectDbContext _connectDbContext;
-
-        public CompaniesController(ConnectDbContext context)
+        public CompaniesController(ICompaniesService service) : base(service)
         {
-            _connectDbContext = context;
         }
 
         [HttpGet]
         public IEnumerable<Company> Get()
         {
-            return _connectDbContext.Companies;
+            var result = Service.GetList();
+            return result;
         }
 
         [HttpGet("{id}")]
         public Company Get(int id)
         {
-            return _connectDbContext.Companies.Find(id);
+            return Service.GetById(id);
         }
     }
 }

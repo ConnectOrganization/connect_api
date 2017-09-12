@@ -1,4 +1,5 @@
-﻿using ConnectApi.Models;
+﻿using System;
+using ConnectApi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -6,6 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
+using NLog.Extensions.Logging;
+using StructureMap;
 using Swashbuckle.AspNetCore.Swagger;
 
 
@@ -17,8 +20,8 @@ namespace ConnectApi
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile("appsettings.json", false, true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
@@ -26,7 +29,7 @@ namespace ConnectApi
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ConnectDbContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
@@ -40,14 +43,33 @@ namespace ConnectApi
                 .AddJsonFormatters(json => { json.ContractResolver = new DefaultContractResolver(); });
 
             services.AddSwaggerGen(c => { c.SwaggerDoc("docs", new Info {Title = "Connect Api", Version = "v1"}); });
+
+            // StructureMap Configuration [This must be at the end]         
+            var builder = new Container();
+            builder.Configure(config =>
+            {
+                config.Scan(
+                    scan =>
+                    {
+                        scan.TheCallingAssembly();
+                        scan.WithDefaultConventions();
+                        scan.LookForRegistries();
+                    });
+                config.Populate(services);
+            });
+
+            var sevice = builder.GetInstance<IServiceProvider>();
+            return sevice;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
+            ConnectDbContext connectDbContext)
         {
+            //add NLog to ASP.NET Core
+            loggerFactory.AddNLog();
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
 
             app.UseMvc();
 
@@ -55,6 +77,11 @@ namespace ConnectApi
             app.UseSwagger(c => { c.RouteTemplate = "{documentName}/swagger.json"; });
             // Enable middleware to serve swagger-ui assets (HTML, JS, CSS etc.)
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/docs/swagger.json", "Connect Api"); });
+
+            connectDbContext.Database.EnsureDeleted();
+            connectDbContext.Database.EnsureCreated();
+
+            SeedData.Initialize(connectDbContext);
         }
     }
 }
