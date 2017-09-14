@@ -2,6 +2,7 @@
 using ConnectApi.Models;
 using ConnectApi.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Pagination;
 
 namespace ConnectApi.Controllers
 {
@@ -19,9 +20,9 @@ namespace ConnectApi.Controllers
         /// <returns>Companies</returns>
         [ProducesResponseType(typeof(Company), 200)]
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(PaginationParams paginationParams)
         {
-            var result = Service.GetList();
+            var result = Service.GetList(paginationParams);
             return Ok(result);
         }
 

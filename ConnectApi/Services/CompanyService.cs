@@ -3,10 +3,12 @@ using System.Linq;
 using ConnectApi.Models;
 using ConnectApi.Services.Interface;
 using Microsoft.EntityFrameworkCore;
+using Pagination;
+using Pagination.Extensions;
 
 namespace ConnectApi.Services
 {
-    public class CompanyService : ICompanyService
+    public class CompanyService : ServiceBase<Company>, ICompanyService
     {
         private readonly ConnectDbContext _context;
 
@@ -15,15 +17,19 @@ namespace ConnectApi.Services
             _context = connectDbContext;
         }
 
-        public List<Company> GetList()
+        public override List<Company> GetList(PaginationParams paginationParams)
         {
-            return _context.Companies.Include(a => a.Address).AsNoTracking().ToList();
+            return _context.Companies.GetList(paginationParams).OrderBy(o => o.CompanyName).Include(a => a.Address)
+                .AsNoTracking().ToList();
         }
 
-        public Company GetById(int id)
+        public override Company GetById(int id)
         {
             var company = _context.Companies.Find(id);
-            _context.Entry(company).Reference(a => a.Address).Load();
+            if (company != null)
+            {
+                _context.Entry(company).Reference(a => a.Address).Load();
+            }
             return company;
         }
     }

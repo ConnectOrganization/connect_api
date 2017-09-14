@@ -73,42 +73,45 @@ namespace ConnectApi.Tests.Controller
             var result = _client.WithUrl("companies").GetJsonAsync<List<Company>>().Result;
 
             //  Assertions
-            Assert.Equal(1, result.Count);
+            Assert.Equal(4, result.Count);
             Assert.Collection(result,
-               keyValuePair =>
-               {
-                   Assert.Equal("Propriteryship", keyValuePair.BusinessType);
-                   Assert.Equal(true, keyValuePair.Active);
-                   Assert.Equal(new DateTime(2012, 12, 2), keyValuePair.AccountFrom);
-                   Assert.Equal(new DateTime(2019, 12, 2), keyValuePair.AccountTo);
-                   Assert.Equal(new DateTime(2017, 10, 10), keyValuePair.BooksFrom);
-                   Assert.Equal("Industrial Shop and privt ltd", keyValuePair.CompanyName);
-                   Assert.Equal("FAX001", keyValuePair.Fax);
-                   Assert.Equal("RUP", keyValuePair.CurrencyType);
-                   Assert.Equal("01AFZPL5814M012", keyValuePair.GST);
-                   Assert.Equal("INCOMETaxPan", keyValuePair.InocomeTaxPan);
-                   Assert.Equal("0001", keyValuePair.LandLine1);
-                   Assert.Equal("0002", keyValuePair.LandLine2);
-                   Assert.Equal("0001", keyValuePair.Licence1);
-                   Assert.Equal("0002", keyValuePair.Licence2);
-                   Assert.Equal("123456789", keyValuePair.Phone);
-                   Assert.Equal("Industrial", keyValuePair.PrintingName);
-                   Assert.Equal("Industrial", keyValuePair.ShortName);
-                   Assert.Equal("Tax001", keyValuePair.TaxReg1);
-                   Assert.Equal("Tax002", keyValuePair.TaxReg2);
-                   Assert.Equal("Anand", keyValuePair.CreatedBy);
-                   Assert.Equal("Anand", keyValuePair.ModifiedBy);
+                item => { },
+                item =>
+                {
+                    Assert.Equal("Propriteryship", item.BusinessType);
+                    Assert.Equal(true, item.Active);
+                    Assert.Equal(new DateTime(2012, 12, 2), item.AccountFrom);
+                    Assert.Equal(new DateTime(2019, 12, 2), item.AccountTo);
+                    Assert.Equal(new DateTime(2017, 10, 10), item.BooksFrom);
+                    Assert.Equal("Industrial Shop and privt ltd", item.CompanyName);
+                    Assert.Equal("FAX001", item.Fax);
+                    Assert.Equal("RUP", item.CurrencyType);
+                    Assert.Equal("01AFZPL5814M012", item.GST);
+                    Assert.Equal("INCOMETaxPan", item.InocomeTaxPan);
+                    Assert.Equal("0001", item.LandLine1);
+                    Assert.Equal("0002", item.LandLine2);
+                    Assert.Equal("0001", item.Licence1);
+                    Assert.Equal("0002", item.Licence2);
+                    Assert.Equal("123456789", item.Phone);
+                    Assert.Equal("Industrial", item.PrintingName);
+                    Assert.Equal("Industrial", item.ShortName);
+                    Assert.Equal("Tax001", item.TaxReg1);
+                    Assert.Equal("Tax002", item.TaxReg2);
+                    Assert.Equal("Anand", item.CreatedBy);
+                    Assert.Equal("Anand", item.ModifiedBy);
 
                     // Address
-                    Assert.Equal("70/B, Bridnavan Nagar, DRC post", keyValuePair.Address.Address);
-                   Assert.Equal("Bangalore", keyValuePair.Address.City);
-                   Assert.Equal("sample@gmail.com", keyValuePair.Address.Email);
-                   Assert.Equal("555602", keyValuePair.Address.PinCode);
-                   Assert.Equal("Karnataka", keyValuePair.Address.State);
-                   Assert.Equal("Anand", keyValuePair.Address.CreatedBy);
-                   Assert.Equal("Anand", keyValuePair.Address.ModifiedBy);
-               }
-           );
+                    Assert.Equal("70/B, Bridnavan Nagar, DRC post", item.Address.Address);
+                    Assert.Equal("Bangalore", item.Address.City);
+                    Assert.Equal("sample@gmail.com", item.Address.Email);
+                    Assert.Equal("555602", item.Address.PinCode);
+                    Assert.Equal("Karnataka", item.Address.State);
+                    Assert.Equal("Anand", item.Address.CreatedBy);
+                    Assert.Equal("Anand", item.Address.ModifiedBy);
+                },
+                item => { },
+                item => { }
+            );
         }
     }
 }

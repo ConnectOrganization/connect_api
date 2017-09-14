@@ -11,7 +11,7 @@ using Newtonsoft.Json.Serialization;
 using NLog.Extensions.Logging;
 using StructureMap;
 using Swashbuckle.AspNetCore.Swagger;
-
+using Pagination;
 
 namespace ConnectApi
 {
@@ -38,7 +38,7 @@ namespace ConnectApi
             services.AddEntityFrameworkSqlite().AddDbContext<ConnectDbContext>();
 
             // Add framework services.
-            services.AddMvcCore()
+            services.AddMvcCore(o => o.Filters.Add(typeof(PaginationFilter)))
                 .AddApiExplorer()
                 .AddDataAnnotations()
                 .AddJsonFormatters(json =>
@@ -86,7 +86,7 @@ namespace ConnectApi
             connectDbContext.Database.EnsureDeleted();
             connectDbContext.Database.EnsureCreated();
 
-            SeedData.Initialize(connectDbContext);
+            SeedData.SeedData.Initialize(connectDbContext);
         }
     }
 }
