@@ -21,7 +21,8 @@ namespace ConnectApi.Controllers
         /// <returns>Companies</returns>
         [ProducesResponseType(typeof(Company), 200)]
         [HttpGet]
-        public IActionResult Get([FromQuery] PaginationParams paginationParams, SortingInfo sortingInfo)
+        public IActionResult Get([FromQuery] PaginationParams paginationParams,
+            [FromBody] SortingInfo sortingInfo)
         {
             var result = Service.GetList(paginationParams, sortingInfo);
             return Ok(result);
@@ -37,7 +38,7 @@ namespace ConnectApi.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(Company), 200)]
         [ProducesResponseType(typeof(Nullable), 404)]
-        public IActionResult Get(int id)
+        public IActionResult Get([FromRoute] int id)
         {
             var company = Service.GetById(id);
             if (company == null)
