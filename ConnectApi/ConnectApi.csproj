@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PaginationLibrary\Pagination\Pagination.csproj" />
-    <ProjectReference Include="..\SortingLibrary\Sorting.csproj" />
+    <ProjectReference Include="..\SortingLibrary\Sorting\Sorting.csproj" />
   </ItemGroup>
 
 </Project>
