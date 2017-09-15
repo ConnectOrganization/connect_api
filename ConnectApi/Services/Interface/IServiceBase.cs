@@ -10,5 +10,6 @@ namespace ConnectApi.Services.Interface
         List<T> GetList();
         List<T> GetList(PaginationParams paginationParams, SortingInfo sortingInfo);
         T GetById(int id);
+        T Put(T entity);
     }
 }

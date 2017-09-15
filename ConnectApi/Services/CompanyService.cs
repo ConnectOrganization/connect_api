@@ -36,5 +36,12 @@ namespace ConnectApi.Services
             }
             return company;
         }
+
+        public override Company Put(Company company)
+        {
+            _context.Update(company);
+            _context.SaveChanges();
+            return company;
+        }
     }
 }

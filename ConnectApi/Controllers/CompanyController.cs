@@ -2,6 +2,8 @@
 using ConnectApi.Models;
 using ConnectApi.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Pagination;
 using Sorting;
 
@@ -22,10 +24,10 @@ namespace ConnectApi.Controllers
         [ProducesResponseType(typeof(Company), 200)]
         [HttpGet]
         public IActionResult Get([FromQuery] PaginationParams paginationParams,
-            [FromBody] SortingInfo sortingInfo)
+                                 [FromQuery] SortingInfo sortingInfo)
         {
-            var result = Service.GetList(paginationParams, sortingInfo);
-            return Ok(result);
+            var companies = Service.GetList(paginationParams, sortingInfo);
+            return Ok(companies);
         }
 
         /// <summary>
@@ -47,5 +49,27 @@ namespace ConnectApi.Controllers
             }
             return Ok(company);
         }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns>Company</returns>
+		/// <response code="200">Found Record</response>
+		/// <response code="404">Record not found</response>
+		[HttpPut("{id}")]
+		[ProducesResponseType(typeof(Company), 200)]
+		[ProducesResponseType(typeof(Nullable), 404)]
+        public IActionResult Put([FromRoute] int id,[FromBody] JObject companyJObject)
+		{
+			var company = Service.GetById(id);
+			if (company == null)
+			{
+				return NotFound();
+			}
+
+            JsonConvert.PopulateObject(companyJObject.ToString(), company);
+            return Ok(Service.Put(company));
+		}
     }
 }

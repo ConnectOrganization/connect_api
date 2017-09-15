@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ConnectApi.Models;
 using ConnectApi.Services.Interface;
 using Pagination;
@@ -10,17 +11,22 @@ namespace ConnectApi.Services
     {
         public virtual List<T> GetList()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public virtual List<T> GetList(PaginationParams paginationParams, SortingInfo sortingInfo)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public virtual T GetById(int id)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
+        }
+
+        public virtual T Put(T entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }
