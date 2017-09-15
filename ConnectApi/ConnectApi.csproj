@@ -6,7 +6,19 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutputPath>bin\netcoreapp1.1\</OutputPath>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;NETCOREAPP1_1</DefineConstants>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DefineConstants>TRACE;NETCOREAPP1_1</DefineConstants>
+    <OutputPath>bin\</OutputPath>
+    <Optimize>false</Optimize>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,7 +45,8 @@
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Pagination\Pagination.csproj" />
+    <ProjectReference Include="..\PaginationLibrary\Pagination\Pagination.csproj" />
+    <ProjectReference Include="..\SortingLibrary\Sorting.csproj" />
   </ItemGroup>
 
 </Project>

@@ -5,6 +5,7 @@ using ConnectApi.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 using Pagination;
 using Pagination.Extensions;
+using Sorting;
 
 namespace ConnectApi.Services
 {
@@ -17,10 +18,13 @@ namespace ConnectApi.Services
             _context = connectDbContext;
         }
 
-        public override List<Company> GetList(PaginationParams paginationParams)
+        public override List<Company> GetList(PaginationParams paginationParams, SortingInfo sortingInfo)
         {
-            return _context.Companies.GetList(paginationParams).OrderBy(o => o.CompanyName).Include(a => a.Address)
-                .AsNoTracking().ToList();
+            sortingInfo.Add(nameof(Company.CompanyName), Sorting.Sorting.Asc);
+
+            var query = _context.Companies.GetList(paginationParams).IncludeOrderBy(sortingInfo).Include(a => a.Address)
+                .AsNoTracking();
+            return query.ToList();
         }
 
         public override Company GetById(int id)

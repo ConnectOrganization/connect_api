@@ -2,6 +2,7 @@
 using ConnectApi.Models;
 using ConnectApi.Services.Interface;
 using Pagination;
+using Sorting;
 
 namespace ConnectApi.Services
 {
@@ -12,7 +13,7 @@ namespace ConnectApi.Services
             throw new System.NotImplementedException();
         }
 
-        public virtual List<T> GetList(PaginationParams paginationParams)
+        public virtual List<T> GetList(PaginationParams paginationParams, SortingInfo sortingInfo)
         {
             throw new System.NotImplementedException();
         }

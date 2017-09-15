@@ -3,6 +3,7 @@ using ConnectApi.Models;
 using ConnectApi.Services;
 using ConnectApi.Tests.Fixtures;
 using Pagination;
+using Sorting;
 using Xunit;
 
 namespace ConnectApi.Tests.Services
@@ -21,7 +22,7 @@ namespace ConnectApi.Tests.Services
         public void GetShouldReturnAllCompanies()
         {
             var service = new CompanyService(_context);
-            var result = service.GetList(new PaginationParams());
+            var result = service.GetList(new PaginationParams(), new SortingInfo());
 
             //  Assertions
             Assert.Equal(4, result.Count);

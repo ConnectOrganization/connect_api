@@ -12,6 +12,7 @@ using NLog.Extensions.Logging;
 using StructureMap;
 using Swashbuckle.AspNetCore.Swagger;
 using Pagination;
+using Sorting;
 
 namespace ConnectApi
 {
@@ -38,7 +39,11 @@ namespace ConnectApi
             services.AddEntityFrameworkSqlite().AddDbContext<ConnectDbContext>();
 
             // Add framework services.
-            services.AddMvcCore(o => o.Filters.Add(typeof(PaginationFilter)))
+            services.AddMvcCore(o =>
+                {
+                    o.Filters.Add(typeof(PaginationFilter));
+                    o.Filters.Add(typeof(SortingFilter));
+                })
                 .AddApiExplorer()
                 .AddDataAnnotations()
                 .AddJsonFormatters(json =>
