@@ -21,7 +21,7 @@ namespace ConnectApi.Controllers
         /// <returns>Companies</returns>
         [ProducesResponseType(typeof(Company), 200)]
         [HttpGet]
-        public IActionResult Get(PaginationParams paginationParams, SortingInfo sortingInfo)
+        public IActionResult Get([FromQuery] PaginationParams paginationParams, SortingInfo sortingInfo)
         {
             var result = Service.GetList(paginationParams, sortingInfo);
             return Ok(result);
