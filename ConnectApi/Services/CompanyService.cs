@@ -2,6 +2,7 @@
 using System.Linq;
 using ConnectApi.Models;
 using ConnectApi.Services.Interface;
+using ConnectApi.Validations;
 using Microsoft.EntityFrameworkCore;
 using Pagination;
 using Pagination.Extensions;
@@ -11,11 +12,9 @@ namespace ConnectApi.Services
 {
     public class CompanyService : ServiceBase<Company>, ICompanyService
     {
-        private readonly ConnectDbContext _context;
-
-        public CompanyService(ConnectDbContext connectDbContext)
+        public CompanyService(ConnectDbContext connectDbContext, CompanyValidator companyValidator)
+            : base(connectDbContext, companyValidator)
         {
-            _context = connectDbContext;
         }
 
         public override List<Company> GetList(PaginationParams paginationParams, SortingInfo sortingInfo)
@@ -39,9 +38,12 @@ namespace ConnectApi.Services
 
         public override Company Put(Company company)
         {
-            _context.Update(company);
-            _context.SaveChanges();
-            return company;
+           return base.Put(company);
+        }
+
+        public override Company Add(Company entity)
+        {
+            return base.Add(entity);
         }
     }
 }

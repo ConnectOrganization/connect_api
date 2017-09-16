@@ -13,6 +13,7 @@ using StructureMap;
 using Swashbuckle.AspNetCore.Swagger;
 using Pagination;
 using Sorting;
+using ConnectApi.Filters;
 
 namespace ConnectApi
 {
@@ -43,6 +44,7 @@ namespace ConnectApi
                 {
                     o.Filters.Add(typeof(PaginationFilter));
                     o.Filters.Add(typeof(SortingFilter));
+                    o.Filters.Add(typeof(ExceptionHandlerFilter));
                 })
                 .AddApiExplorer()
                 .AddDataAnnotations()

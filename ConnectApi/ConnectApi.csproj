@@ -47,6 +47,11 @@
   <ItemGroup>
     <ProjectReference Include="..\PaginationLibrary\Pagination\Pagination.csproj" />
     <ProjectReference Include="..\SortingLibrary\Sorting\Sorting.csproj" />
+    <ProjectReference Include="..\ValidationLibrary\Validation\Validation.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Validations\" />
+    <Folder Include="Filters\" />
+  </ItemGroup>
 </Project>

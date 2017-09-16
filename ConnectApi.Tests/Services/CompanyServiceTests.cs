@@ -5,6 +5,7 @@ using ConnectApi.Tests.Fixtures;
 using Pagination;
 using Sorting;
 using Xunit;
+using ConnectApi.Validations;
 
 namespace ConnectApi.Tests.Services
 {
@@ -12,16 +13,17 @@ namespace ConnectApi.Tests.Services
     public class CompanyServiceTests : IClassFixture<CompanyFixture>
     {
         private readonly ConnectDbContext _context;
-
+        private readonly CompanyValidator _companyValidator;
         public CompanyServiceTests(CompanyFixture fixture)
         {
             _context = fixture.ConnectDbContext;
+            _companyValidator = new CompanyValidator(_context);
         }
 
         [Fact(DisplayName = "Get should return all companies")]
         public void GetShouldReturnAllCompanies()
         {
-            var service = new CompanyService(_context);
+            var service = new CompanyService(_context, _companyValidator);
             var result = service.GetList(new PaginationParams(), new SortingInfo());
 
             //  Assertions
@@ -69,8 +71,8 @@ namespace ConnectApi.Tests.Services
         [Fact(DisplayName = "Get should return record for valid Id")]
         public void GetShouldReturnRecordForValidId()
         {
-            var service = new CompanyService(_context);
-            var company = service.GetById(1);
+			var service = new CompanyService(_context, _companyValidator);
+			var company = service.GetById(1);
 
             //  Assertions
             Assert.Equal("Propriteryship", company.BusinessType);
@@ -108,8 +110,8 @@ namespace ConnectApi.Tests.Services
         [Fact(DisplayName = "Get should return nothing for invalid Id")]
         public void GetShouldReturnNothingForInValidId()
         {
-            var service = new CompanyService(_context);
-            var company = service.GetById(0);
+			var service = new CompanyService(_context, _companyValidator);
+			var company = service.GetById(0);
 
             //  Assertions
             Assert.Null(company);

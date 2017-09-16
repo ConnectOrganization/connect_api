@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConnectApi", "ConnectApi\ConnectApi.csproj", "{3C7D8E65-CA84-4907-A346-ABB2BE10EE7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectApi", "ConnectApi\ConnectApi.csproj", "{3C7D8E65-CA84-4907-A346-ABB2BE10EE7C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConnectApi.Tests", "ConnectApi.Tests\ConnectApi.Tests.csproj", "{96921BB0-7FA7-404A-AB67-E9A635E5E128}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectApi.Tests", "ConnectApi.Tests\ConnectApi.Tests.csproj", "{96921BB0-7FA7-404A-AB67-E9A635E5E128}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A580CC55-17CA-49BA-93FD-35FF391DB254}"
 	ProjectSection(SolutionItems) = preProject
@@ -18,13 +18,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PaginationLibrary", "Pagina
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SortingLibrary", "SortingLibrary", "{660F4926-12CF-4EBA-9649-A0089C79DD23}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pagination", "PaginationLibrary\Pagination\Pagination.csproj", "{890E87FC-94D9-43B0-B243-981E74CA956A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pagination", "PaginationLibrary\Pagination\Pagination.csproj", "{890E87FC-94D9-43B0-B243-981E74CA956A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pagination.Tests", "PaginationLibrary\Pagination.Tests\Pagination.Tests.csproj", "{29262312-2EDD-4FC6-9F5B-407D0DD0EE7B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pagination.Tests", "PaginationLibrary\Pagination.Tests\Pagination.Tests.csproj", "{29262312-2EDD-4FC6-9F5B-407D0DD0EE7B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorting", "SortingLibrary\Sorting\Sorting.csproj", "{419DFFAD-6D63-4FF4-8E3A-20AF2D5FB472}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorting", "SortingLibrary\Sorting\Sorting.csproj", "{419DFFAD-6D63-4FF4-8E3A-20AF2D5FB472}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorting.Tests", "SortingLibrary\Sorting.Tests\Sorting.Tests.csproj", "{EA208DF2-EA41-4300-8A07-61F219B75CAB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorting.Tests", "SortingLibrary\Sorting.Tests\Sorting.Tests.csproj", "{EA208DF2-EA41-4300-8A07-61F219B75CAB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ValidationsLibrary", "ValidationsLibrary", "{C9FE7D59-C0F8-4390-9BD4-A6750DF8B95A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validation", "ValidationLibrary\Validation\Validation.csproj", "{EFCC8377-8468-46AF-A176-A6C8198B0187}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -108,6 +112,18 @@ Global
 		{EA208DF2-EA41-4300-8A07-61F219B75CAB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EA208DF2-EA41-4300-8A07-61F219B75CAB}.Release|x64.ActiveCfg = Release|Any CPU
 		{EA208DF2-EA41-4300-8A07-61F219B75CAB}.Release|x64.Build.0 = Release|Any CPU
+		{EFCC8377-8468-46AF-A176-A6C8198B0187}.Build|Any CPU.ActiveCfg = Release|Any CPU
+		{EFCC8377-8468-46AF-A176-A6C8198B0187}.Build|Any CPU.Build.0 = Release|Any CPU
+		{EFCC8377-8468-46AF-A176-A6C8198B0187}.Build|x64.ActiveCfg = Release|Any CPU
+		{EFCC8377-8468-46AF-A176-A6C8198B0187}.Build|x64.Build.0 = Release|Any CPU
+		{EFCC8377-8468-46AF-A176-A6C8198B0187}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFCC8377-8468-46AF-A176-A6C8198B0187}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFCC8377-8468-46AF-A176-A6C8198B0187}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EFCC8377-8468-46AF-A176-A6C8198B0187}.Debug|x64.Build.0 = Debug|Any CPU
+		{EFCC8377-8468-46AF-A176-A6C8198B0187}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFCC8377-8468-46AF-A176-A6C8198B0187}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFCC8377-8468-46AF-A176-A6C8198B0187}.Release|x64.ActiveCfg = Release|Any CPU
+		{EFCC8377-8468-46AF-A176-A6C8198B0187}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -119,6 +135,8 @@ Global
 		{29262312-2EDD-4FC6-9F5B-407D0DD0EE7B} = {9FC4EFF8-C38B-4779-B926-F63F3B3F47D2}
 		{419DFFAD-6D63-4FF4-8E3A-20AF2D5FB472} = {660F4926-12CF-4EBA-9649-A0089C79DD23}
 		{EA208DF2-EA41-4300-8A07-61F219B75CAB} = {660F4926-12CF-4EBA-9649-A0089C79DD23}
+		{C9FE7D59-C0F8-4390-9BD4-A6750DF8B95A} = {1E55050C-43A8-4ADE-AA23-CEAE43D4B158}
+		{EFCC8377-8468-46AF-A176-A6C8198B0187} = {C9FE7D59-C0F8-4390-9BD4-A6750DF8B95A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {93AB7277-A841-4BF1-81F7-69E74D93565B}

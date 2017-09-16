@@ -26,7 +26,6 @@ namespace ConnectApi.Models
         [Required]
         public string Email { get; set; }
 
-        [Required]
         public virtual Company Company { get; set; }
     }
 }

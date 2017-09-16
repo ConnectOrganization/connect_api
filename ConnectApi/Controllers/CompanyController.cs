@@ -71,5 +71,22 @@ namespace ConnectApi.Controllers
             JsonConvert.PopulateObject(companyJObject.ToString(), company);
             return Ok(Service.Put(company));
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns>Company</returns>
+		/// <response code="201">Found Record</response>
+        [HttpPost]
+		[ProducesResponseType(typeof(Company), 201)]
+		public IActionResult Add([FromBody] Company company )
+		{
+			if (company == null)
+			{
+				return BadRequest();
+			}
+
+            return Created($"companies/{company.Id}", Service.Add(company));
+		}
     }
 }

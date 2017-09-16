@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Validation;
 
 namespace ConnectApi.Models
 {
-    public class ConnectDbContext : DbContext
+    public class ConnectDbContext : ValidationDbContext
     {
         public ConnectDbContext(DbContextOptions options) : base(options)
         {
