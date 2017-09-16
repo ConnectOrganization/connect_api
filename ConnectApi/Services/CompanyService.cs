@@ -21,29 +21,24 @@ namespace ConnectApi.Services
         {
             sortingInfo.Add(nameof(Company.CompanyName), Sorting.Sorting.Asc);
 
-            var query = _context.Companies.GetList(paginationParams).IncludeOrderBy(sortingInfo).Include(a => a.Address)
+            var query = Context.Companies.GetList(paginationParams).IncludeOrderBy(sortingInfo).Include(a => a.Address)
                 .AsNoTracking();
             return query.ToList();
         }
 
         public override Company GetById(int id)
         {
-            var company = _context.Companies.Find(id);
+            var company = Context.Companies.Find(id);
             if (company != null)
             {
-                _context.Entry(company).Reference(a => a.Address).Load();
+                Context.Entry(company).Reference(a => a.Address).Load();
             }
             return company;
         }
 
         public override Company Put(Company company)
         {
-           return base.Put(company);
-        }
-
-        public override Company Add(Company entity)
-        {
-            return base.Add(entity);
+            return base.Put(company);
         }
     }
 }

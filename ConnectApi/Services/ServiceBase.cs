@@ -10,17 +10,18 @@ namespace ConnectApi.Services
 {
     public abstract class ServiceBase<T> : IServiceBase<T> where T : ModelBase, new()
     {
-        protected readonly ConnectDbContext _context;
-        protected readonly IValidator<T> _validator;
+        protected readonly ConnectDbContext Context;
+        protected readonly IValidator<T> Validator;
+
         protected ServiceBase(ConnectDbContext context, IValidator<T> validator)
         {
-            _context = context;
-            _validator = validator;
+            Context = context;
+            Validator = validator;
         }
 
         protected ServiceBase(ConnectDbContext context)
         {
-            _context = context;
+            Context = context;
         }
 
         public virtual List<T> GetList()
@@ -40,16 +41,16 @@ namespace ConnectApi.Services
 
         public virtual T Put(T entity)
         {
-            _context.Update(entity, _validator);
-            _context.SaveChanges();
+            Context.Update(entity, Validator);
+            Context.SaveChanges();
             return entity;
         }
 
         public virtual T Add(T entity)
         {
-			_context.Add(entity, _validator);
-			_context.SaveChanges();
-			return entity;
+            Context.Add(entity, Validator);
+            Context.SaveChanges();
+            return entity;
         }
     }
 }

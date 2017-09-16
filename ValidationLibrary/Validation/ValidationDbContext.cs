@@ -17,7 +17,7 @@ namespace Validation
             return Update(entity).Entity;
         }
 
-        public  T Add<T>(T entity, IValidator<T> validator) where T : class, new()
+        public T Add<T>(T entity, IValidator<T> validator) where T : class, new()
         {
             Validate(entity, validator);
             return base.Add(entity).Entity;

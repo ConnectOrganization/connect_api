@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Validation
 {
-    public abstract class AbstractValidator<T, U> : IValidator<U> where T : DbContext
+    public abstract class AbstractValidator<T, TU> : IValidator<TU> where T : DbContext
     {
-        protected readonly T _context;
+        protected readonly T Context;
 
         protected List<ValidationResult> ValidationResults { get; set; } = new List<ValidationResult>();
 
@@ -16,10 +16,10 @@ namespace Validation
 
         protected AbstractValidator(T context)
         {
-            _context = context;
+            Context = context;
         }
 
-        public virtual void Validate(U model)
+        public virtual void Validate(TU model)
         {
             // Do nothing
         }

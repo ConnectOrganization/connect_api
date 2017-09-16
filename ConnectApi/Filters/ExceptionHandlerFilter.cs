@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
 using NLog;
-using System.Linq;
+using Validation.Exceptions;
 
 namespace ConnectApi.Filters
 {
@@ -12,10 +13,7 @@ namespace ConnectApi.Filters
     {
         private static readonly Logger Logger = LogManager.GetLogger("Logging");
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="context"></param>
+        /// <inheritdoc />
         public override void OnException(ExceptionContext context)
         {
             if (context.Exception != null)
@@ -24,10 +22,11 @@ namespace ConnectApi.Filters
                 var statusCode = HttpStatusCode.InternalServerError;
                 string content;
 
-                if (exception is Validation.Exceptions.ValidationException)
+                if (exception is ValidationException validationException)
                 {
-                    var errorList = (exception as Validation.Exceptions.ValidationException).ValidationResults.Select(m => new { m.MemberNames, m.ErrorMessage })
-                                 .ToList();
+                    var errorList = validationException.ValidationResults
+                        .Select(m => new {m.MemberNames, m.ErrorMessage})
+                        .ToList();
                     content = JsonConvert.SerializeObject(errorList);
                     statusCode = HttpStatusCode.BadRequest;
                 }
@@ -47,17 +46,15 @@ namespace ConnectApi.Filters
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="exceptionMessage"></param>
         /// <returns></returns>
         private string FormatExceptionMessage(string exceptionMessage)
         {
-            return JsonConvert.SerializeObject(new { error = exceptionMessage });
+            return JsonConvert.SerializeObject(new {error = exceptionMessage});
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="ex"></param>
         /// <returns></returns>
@@ -75,7 +72,6 @@ namespace ConnectApi.Filters
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="content"></param>
         /// <param name="statusCode"></param>
@@ -86,7 +82,7 @@ namespace ConnectApi.Filters
             {
                 Content = content,
                 ContentType = "application/json",
-                StatusCode = (int)statusCode
+                StatusCode = (int) statusCode
             };
         }
     }

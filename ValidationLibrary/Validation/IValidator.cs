@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Validation
 {
-    public interface IValidator<U>
+    public interface IValidator<in TU>
     {
         List<ValidationResult> GetValidations();
 
-		void Validate(U model);
+        void Validate(TU model);
     }
 }
