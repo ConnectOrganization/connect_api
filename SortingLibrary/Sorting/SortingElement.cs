@@ -3,7 +3,6 @@
     public class SortingElement
     {
         private const Sorting Asc = Sorting.Asc;
-        private const Sorting Desc = Sorting.Dsc;
 
         private readonly string _orderBy;
         private readonly Sorting _direction;
