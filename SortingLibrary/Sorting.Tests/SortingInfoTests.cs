@@ -75,5 +75,15 @@ namespace Sorting.Tests
             //  Assertions
             Assert.Equal("Sorting Header mal formed for sorting", error.Message);
         }
+
+        [Fact(DisplayName = "Result null on parsing empty header")]
+        public void ResultNullOnParsingEmptyHeader()
+        {
+            //  Actual
+            var sortingInfo = SortingInfo.Parse(null);
+
+            //  Assertions
+            Assert.Null(sortingInfo);
+        }
     }
 }

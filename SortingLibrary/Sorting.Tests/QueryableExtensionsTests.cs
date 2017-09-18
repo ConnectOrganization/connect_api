@@ -144,6 +144,9 @@ namespace Sorting.Tests
             // Assertions
             Assert.Equal("C", result[0].Param1);
             Assert.Equal("E", result[0].Param2);
+            Assert.Equal("F", result[0].Param3);
+            Assert.Equal("G", result[0].Param4);
+            Assert.Equal("H", result[0].Param5);
             Assert.Equal("B", result[2].Param1);
             Assert.Equal("D", result[2].Param2);
             Assert.Equal("A", result[5].Param1);

@@ -19,11 +19,6 @@
             return Asc.Equals(_direction);
         }
 
-        public bool IsDesc()
-        {
-            return Desc.Equals(_direction);
-        }
-
         public string GetOrderBy()
         {
             return _orderBy;

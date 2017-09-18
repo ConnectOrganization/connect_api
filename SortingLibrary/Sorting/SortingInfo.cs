@@ -51,7 +51,7 @@ namespace Sorting
 
                 var values = key.Split('_');
                 var direction = values[1].ToLower().Equals("asc") ? Sorting.Asc : Sorting.Dsc;
-                var orderBy = values[0]; // no IndexOutOfBoundsException is raised
+                var orderBy = values[0];
                 sorting.Add(orderBy, direction);
             }
 
