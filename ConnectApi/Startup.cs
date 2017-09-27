@@ -34,10 +34,11 @@ namespace ConnectApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ConnectDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(connectionString));
 
-            services.AddEntityFrameworkSqlite().AddDbContext<ConnectDbContext>();
+            services.AddEntityFrameworkSqlServer().AddDbContext<ConnectDbContext>();
 
             // Add framework services.
             services.AddMvcCore(o =>
@@ -90,7 +91,6 @@ namespace ConnectApi
             // Enable middleware to serve swagger-ui assets (HTML, JS, CSS etc.)
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/docs/swagger.json", "Connect Api"); });
 
-            connectDbContext.Database.EnsureDeleted();
             connectDbContext.Database.EnsureCreated();
 
             SeedData.SeedData.Initialize(connectDbContext);

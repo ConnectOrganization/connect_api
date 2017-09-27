@@ -6,10 +6,9 @@ namespace ConnectApi.Models
     [Table("AddressInfo")]
     public class AddressInfo : ModelBase
     {
-        [Key, ForeignKey("Company")]
-        [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public override int Id { get; set; }
+        [Key]
+        [ForeignKey("Company")]
+        public new int Id { get; set; }
 
         [Required]
         public string Address { get; set; }

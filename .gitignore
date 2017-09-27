@@ -269,3 +269,6 @@ __pycache__/
 /ConnectApi/TestResults/4dee00f8-c4e5-422a-8191-782b02791a1f
 /ConnectApi/ConnectApi/obj
 /ConnectApi/ConnectApi/bin/Debug/netcoreapp1.1
+/Logs
+/ConnectApi/Properties/PublishProfiles/FolderProfile.pubxml
+/ConnectApi/aws-windows-deployment-manifest.json

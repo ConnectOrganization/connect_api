@@ -44,7 +44,7 @@ namespace ConnectApi.SeedData
                         ModifiedDate = new DateTime(2017, 10, 10),
                         BooksFrom = new DateTime(2017, 10, 10),
                         Fax = "FAX001",
-                        InocomeTaxPan = "INCOMETaxPan",
+                        InocomeTaxPan = "INCOMETax",
                         LandLine1 = "0001",
                         LandLine2 = "0002",
                         Licence1 = "0001",

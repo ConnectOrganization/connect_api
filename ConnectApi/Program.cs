@@ -9,6 +9,8 @@ namespace ConnectApi
         {
             var host = new WebHostBuilder()
                 .UseKestrel()
+                .UseSetting("detailedErrors", "true")
+                .CaptureStartupErrors(true)
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
