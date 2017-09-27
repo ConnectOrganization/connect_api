@@ -44,7 +44,7 @@ namespace ConnectApi.Tests.Controller
             Assert.Equal("FAX001", company.Fax);
             Assert.Equal("RUP", company.CurrencyType);
             Assert.Equal("01AFZPL5814M012", company.GST);
-            Assert.Equal("INCOMETaxPan", company.InocomeTaxPan);
+            Assert.Equal("INCOMETax", company.InocomeTaxPan);
             Assert.Equal("0001", company.LandLine1);
             Assert.Equal("0002", company.LandLine2);
             Assert.Equal("0001", company.Licence1);
@@ -87,7 +87,7 @@ namespace ConnectApi.Tests.Controller
                     Assert.Equal("FAX001", item.Fax);
                     Assert.Equal("RUP", item.CurrencyType);
                     Assert.Equal("01AFZPL5814M012", item.GST);
-                    Assert.Equal("INCOMETaxPan", item.InocomeTaxPan);
+                    Assert.Equal("INCOMETax", item.InocomeTaxPan);
                     Assert.Equal("0001", item.LandLine1);
                     Assert.Equal("0002", item.LandLine2);
                     Assert.Equal("0001", item.Licence1);
